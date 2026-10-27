@@ -1,0 +1,6 @@
+interface:
+  display_name: "科研证据工作流"
+  short_description: "文献搜集、知识图谱、精读比较、半成品优化与论文写作接续"
+  default_prompt: "使用 $research-evidence-workflow 根据我的研究方向或已有论文、代码和结果继续工作。"
+policy:
+  allow_implicit_invocation: true

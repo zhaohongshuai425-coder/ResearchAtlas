@@ -1,0 +1,134 @@
+{
+  "schema": "research-harness-adapter/1.0",
+  "kind": "project_defined_adapter_not_official_plugin_config",
+  "function_tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "research_status",
+        "description": "Verify the recorded research stages and evidence bindings.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "state"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "research_library",
+        "description": "Page through registered literature metadata; does not read full papers.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "library": {
+              "type": "string",
+              "minLength": 1
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            }
+          },
+          "required": [
+            "library"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "research_graph",
+        "description": "Read a bounded graph summary without promoting evidence states.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "graph": {
+              "type": "string",
+              "minLength": 1
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "node": {
+              "type": "string",
+              "minLength": 1
+            },
+            "verify_sources": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "graph"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "research_reference",
+        "description": "Read a page of the packaged workflow rules, not arbitrary local files.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "offset": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 8000
+            }
+          },
+          "required": [
+            "path"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
+  "executable": [
+    "{python}",
+    "-B",
+    "-X",
+    "utf8",
+    "{skill}/scripts/workflow.py",
+    "harness-tools",
+    "--root",
+    "{authorized_project_root}"
+  ],
+  "read_only": true,
+  "model_calls": false,
+  "request_id_max_characters": 256,
+  "complete_response_max_characters": 16000
+}

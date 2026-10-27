@@ -1,0 +1,40 @@
+{
+  "name": "ml-evaluation",
+  "scope": "机器学习评价条件扩展；具体数据集、实体、预算数值由项目实例提供。",
+  "comparison": {
+    "required_equal": [
+      "task_unit",
+      "label_semantics",
+      "data_identity",
+      "data_version",
+      "evaluation_partition",
+      "metric_definition"
+    ],
+    "report_differences": [
+      "population_slice",
+      "information_permission",
+      "decision_budget_rule",
+      "decision_budget",
+      "eligible_population",
+      "positive_population",
+      "replicate_ids",
+      "feature_information",
+      "supervision",
+      "search_exposure",
+      "uncertainty_unit"
+    ]
+  },
+  "query_synonyms": {
+    "融合": [
+      "fusion",
+      "ensemble"
+    ],
+    "复现": [
+      "reproduction",
+      "replication"
+    ],
+    "泛化": [
+      "generalization"
+    ]
+  }
+}

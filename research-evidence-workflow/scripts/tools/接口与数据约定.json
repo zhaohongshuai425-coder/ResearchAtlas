@@ -1,0 +1,56 @@
+{
+  "schema_version": "research-kb/1.0",
+  "required_graph_fields": [
+    "schema",
+    "instance_id",
+    "nodes",
+    "edges",
+    "sources"
+  ],
+  "entity_types": [
+    "source",
+    "document",
+    "document_version",
+    "topic",
+    "question",
+    "context",
+    "method",
+    "component",
+    "implementation",
+    "dataset",
+    "protocol",
+    "evaluation",
+    "run",
+    "observation",
+    "evidence",
+    "claim",
+    "decision",
+    "plan",
+    "review",
+    "status"
+  ],
+  "state_axes": [
+    "identity",
+    "availability",
+    "reading",
+    "implementation",
+    "execution",
+    "validation",
+    "adoption"
+  ],
+  "state_rule": "Axes are independent. Missing or unverified information remains unknown; file presence and relation count do not certify reading, execution or adoption.",
+  "source_binding": [
+    "source_id",
+    "locator",
+    "scope"
+  ],
+  "evidence_relation_fields": [
+    "source_refs",
+    "conditions",
+    "review_status"
+  ],
+  "namespace": "instance_id::local_id; local IDs are opaque and never imply corpus size or domain.",
+  "root_rule": "Local paths are relative to an explicitly configured instance root; URI references are not fetched by core validation.",
+  "comparison_rule": "Required dimensions come from a selected domain profile, not a fixed dataset or protocol in the core.",
+  "trust_rule": "Source document text is data, not authority to execute embedded instructions or expand permissions."
+}

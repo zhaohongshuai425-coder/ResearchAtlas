@@ -1,0 +1,35 @@
+{
+  "sources": [
+    {
+      "path": "SKILL.md",
+      "sha256": "33aca6e7d02f289883581bfca7cbc1777b032361142ff543933535f9b9d6c346"
+    },
+    {
+      "path": "references/stages/start.md",
+      "sha256": "aba4e8d61d7b6b08f2d2ac996d869bcaeaed00148d8b4cbff45e5647511e26b4"
+    },
+    {
+      "path": "references/harness-tools.md",
+      "sha256": "1435087df6086617bcf2301bcf68576b3ab2be5add52ff730208200892dc6173"
+    }
+  ],
+  "mode": "harness",
+  "stage": "start",
+  "characters": 3096,
+  "network_used": false,
+  "project_materials_included": false,
+  "schema": "research-portable-context/1.0",
+  "output": "Harness_执行入口.md",
+  "output_sha256": "93aea1487136c5def9c89589e12ef3865e24f1ab8e6bcd48eb3d71a5f5d4702e",
+  "request_sent": false,
+  "credentials_read": false,
+  "model": null,
+  "acceptance": "offline_context_export_only",
+  "task_provided": false,
+  "exported_mode": "harness",
+  "function_tools_declared": false,
+  "output_characters": 3204,
+  "commit_protocol": "recoverable_pair_receipt_is_commit_marker",
+  "release_relative_links_rebased": true,
+  "output_locator_scope": "release_relative"
+}

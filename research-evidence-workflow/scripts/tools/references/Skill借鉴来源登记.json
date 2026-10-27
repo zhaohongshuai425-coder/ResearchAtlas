@@ -1,0 +1,75 @@
+{
+  "reviewed_at": "2026-10-23",
+  "scope": "Historical workflow references and source fingerprints; private material and paths excluded from public release.",
+  "sources": [
+    {
+      "id": "S01",
+      "name": "literature-review",
+      "sha256": "20ce73246d4b60038638b221ab1b6fea43e0eb81dd920dcc3ad4df4a2716730b",
+      "reviewed_sections": [
+        "Core Workflow",
+        "Best Practices: Search Strategy; Records, Reports, and Studies; Screening and Selection"
+      ],
+      "use": "selected rules and stage routing; original file unchanged",
+      "scripts_run": false,
+      "distribution": "reference_name_and_provenance_only; upstream Skill files not bundled",
+      "upstream": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "upstream_license": "MIT",
+      "bundled_upstream_files": false,
+      "copyright_notice": "Copyright (c) 2025 K-Dense Inc."
+    },
+    {
+      "id": "S01a",
+      "name": "literature-review",
+      "sha256": "6a53f9474b4ca77db5810ba6a322fc41508ae0026fb68cec02f4c1614913ff9b",
+      "reviewed_sections": [
+        "lines 1-110: planning/search and screening entry"
+      ],
+      "use": "selected rules and stage routing; original file unchanged",
+      "scripts_run": false,
+      "distribution": "reference_name_and_provenance_only; upstream Skill files not bundled",
+      "upstream": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "upstream_license": "MIT",
+      "bundled_upstream_files": false,
+      "copyright_notice": "Copyright (c) 2025 K-Dense Inc."
+    },
+    {
+      "id": "S02",
+      "name": "hypothesis-generation",
+      "sha256": "687f107710a8f4ff5991458b26bccd0743325d35b828d8ecb431eb22677f5e52",
+      "reviewed_sections": [
+        "Keep the objects distinct",
+        "question/evidence boundary",
+        "discriminating predictions",
+        "design/exposure/replication"
+      ],
+      "use": "selected rules and stage routing; original file unchanged",
+      "scripts_run": false,
+      "distribution": "reference_name_and_provenance_only; upstream Skill files not bundled",
+      "upstream": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "upstream_license": "MIT",
+      "bundled_upstream_files": false,
+      "copyright_notice": "Copyright (c) 2025 K-Dense Inc."
+    },
+    {
+      "id": "S03",
+      "name": "experimental-design",
+      "sha256": "53bb303e2d1f127c0062a505b1b6abebd6e4de12e119953b89bdcc0bd93f1798",
+      "reviewed_sections": [
+        "Choosing a design",
+        "The mistakes that ruin studies",
+        "Workflow"
+      ],
+      "use": "selected rules and stage routing; original file unchanged",
+      "scripts_run": false,
+      "distribution": "reference_name_and_provenance_only; upstream Skill files not bundled",
+      "upstream": "https://github.com/K-Dense-AI/scientific-agent-skills",
+      "upstream_license": "MIT",
+      "bundled_upstream_files": false,
+      "copyright_notice": "Copyright (c) 2025 K-Dense Inc."
+    }
+  ],
+  "local_adaptation": "本包中的流程说明、阶段记录和工具实现",
+  "release_note": "Historical source hashes retained. This registration is attribution, not a redistribution license or runtime dependency.",
+  "public_scope": "Verified named workflow references; full historical private provenance remains outside this public repository."
+}

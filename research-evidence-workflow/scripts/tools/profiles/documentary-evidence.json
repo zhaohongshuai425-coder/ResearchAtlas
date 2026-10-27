@@ -1,0 +1,20 @@
+{
+  "name": "documentary-evidence",
+  "scope": "文献、标准、报告和项目材料的来源与主张管理；不强制包含模型或实验。",
+  "comparison": {
+    "required_equal": [],
+    "report_differences": []
+  },
+  "query_synonyms": {
+    "来源": [
+      "source",
+      "provenance"
+    ],
+    "证据": [
+      "evidence"
+    ],
+    "主张": [
+      "claim"
+    ]
+  }
+}

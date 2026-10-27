@@ -1,0 +1,21 @@
+{
+  "name": "research-evidence-workflow",
+  "version": "1.3.0-beta.1",
+  "created_at": "2026-10-27",
+  "distribution": "public-beta",
+  "github_published": false,
+  "license": "MIT",
+  "license_selected": true,
+  "targets": [
+    "codex",
+    "deepseek-chat",
+    "opencode-with-deepseek",
+    "deepseek-harness",
+    "custom-harness"
+  ],
+  "native_runtime_tested": [],
+  "api_calls_performed": 0,
+  "validation_scope": "Core offline tools; native model-driven platform loops are separately verified. No private template or research materials included.",
+  "display_name": "ResearchAtlas",
+  "repository_url": "https://github.com/zhaohongshuai425-coder/ResearchAtlas"
+}

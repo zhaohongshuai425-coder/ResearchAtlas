@@ -1,0 +1,3 @@
+# Harness工具衔接
+宿主从用户任务固定项目根目录，再运行workflow.py harness-tools --root <项目>。模型只传项目内相对路径。四个只读函数为research_status、research_library、research_graph、research_reference；--list返回定义。请求包含id/tool/arguments；完整响应有id、ok及result或带code/message的error。ID须为最多256字符的字符串或JSON安全整数，完整响应默认上限16000字符，错误同样有界。无效或过长ID返回null并标记id_rejected。
+收到tool_calls后，宿主实际执行并按原tool_call_id回传，再让模型继续。桥不调用模型，不负责写库或训练；完整工作由宿主已授权工具完成。阶段状态以实际文件绑定核验，模型finish_reason不能证明研究完成。安装配置另按references/harness.md读取。

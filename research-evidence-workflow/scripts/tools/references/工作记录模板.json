@@ -1,0 +1,46 @@
+{
+  "purpose": "空白结构参考；不是事实记录，不直接用于宣称某阶段完成。只采用当前任务需要的部分。",
+  "feasibility": {
+    "topic": null, "question": null, "existing_decisions": [],
+    "public_sources": [], "materials_or_data": [], "implementation_or_theory_route": null,
+    "resources_and_dependencies": [], "unknowns": [], "feasible_next_step": null
+  },
+  "search_log": {
+    "question": null, "source_or_database": null, "query": null, "searched_at": null,
+    "filters": {}, "raw_export_or_result_url": null, "inclusion_exclusion": [],
+    "record_report_study_links": [], "coverage_gaps": [], "continue_or_pause_reason": null
+  },
+  "reading_note": {
+    "document_id": null, "original_version": null, "original_sha256": null,
+    "reading_scope": null, "question": null, "mechanism_and_formulas": [],
+    "inputs_conditions": [], "implementation_or_proof": null, "evaluation_protocol": null,
+    "reported_results": [], "limitations_and_rivals": [], "local_adaptation": null,
+    "evidence_locators": [], "missing_items": [], "reading_assessment": null
+  },
+  "candidate_and_protocol": {
+    "candidate_id": null, "question": null, "nearest_work": [], "difference": null,
+    "prediction": null, "disconfirming_result": null, "inputs_and_permissions": null,
+    "unit_and_dependence": null, "controls": [], "selection_and_holdout": null,
+    "primary_metric_or_target": null, "repeat_rationale": null, "resource_budget": null,
+    "continue_stop_rules": [], "authorization_scope": null, "deviations": []
+  },
+  "fact_ledger": {
+    "schema": "research-facts/1.0",
+    "facts": [],
+    "fact_record_structure": {
+      "id": null, "definition": null,
+      "expected": {"value": null, "unit": null, "context": null},
+      "evidence": {"path": null, "sha256": null, "locator": null, "excerpt": null},
+      "mentions": []
+    },
+    "mention_record_structure": {
+      "path": null, "sha256": null, "locator": null, "excerpt": null,
+      "value": null, "unit": null, "context": null
+    }
+  },
+  "review_issue": {
+    "id": null, "severity": null, "claim_pointer": null, "evidence_pointer": null,
+    "issue": null, "impact": null, "resolution_test": null,
+    "status": "open", "resolution_evidence": [], "versions": []
+  }
+}

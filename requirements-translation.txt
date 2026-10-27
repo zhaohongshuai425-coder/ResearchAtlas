@@ -1,0 +1,4 @@
+# Optional local Chinese-to-English query translation, not required by core.
+-r requirements-semantic.txt
+sentencepiece
+sacremoses

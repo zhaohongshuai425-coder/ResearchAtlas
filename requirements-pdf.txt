@@ -1,0 +1,4 @@
+# Optional only. Core helpers use Python's standard library.
+pdfplumber>=0.11,<1
+pypdf>=5,<7
+pypdfium2>=4,<6

@@ -1,0 +1,5 @@
+# Optional local semantic retrieval. Choose a torch build suitable for the host.
+numpy>=1.26,<3
+torch>=2.4,<3
+transformers>=4.48,<5
+safetensors>=0.4,<1

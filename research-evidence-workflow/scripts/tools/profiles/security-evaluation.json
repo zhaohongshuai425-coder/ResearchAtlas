@@ -1,0 +1,31 @@
+{
+  "name": "security-evaluation",
+  "scope": "安全系统测试条件扩展；不把异常、故障、电气保护或网络攻击默认等同。",
+  "comparison": {
+    "required_equal": [
+      "protected_asset",
+      "threat_model",
+      "privilege_boundary",
+      "test_environment",
+      "input_workload",
+      "metric_definition",
+      "observation_window"
+    ],
+    "report_differences": [
+      "implementation",
+      "mitigation",
+      "failure_handling"
+    ]
+  },
+  "query_synonyms": {
+    "认证": [
+      "authentication"
+    ],
+    "授权": [
+      "authorization"
+    ],
+    "威胁": [
+      "threat"
+    ]
+  }
+}

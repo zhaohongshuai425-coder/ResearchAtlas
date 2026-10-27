@@ -1,0 +1,43 @@
+{
+  "sources": [
+    {
+      "file": "verify_hardening.py",
+      "source_sha256": "b09be9279f0cf750aefe05019b001790517d239e3b508c8cc50e152f11e3256a",
+      "class": "HardeningTests",
+      "scope": "Same synthetic fixture assertions; development path setup and direct-run reporting removed."
+    },
+    {
+      "file": "verify_query_atomic.py",
+      "source_sha256": "3435b87f94eea2cbf13d744e9a68d0eb76521864cb3d94b2eb1d9a3b45ea39f5",
+      "class": "QueryAtomicTests",
+      "scope": "Same synthetic fixture assertions; development path setup and direct-run reporting removed."
+    },
+    {
+      "file": "verify_literature_tools.py",
+      "source_sha256": "c9efd20ab4b5ab1d9d9557d285131437599deb83bc36571f464a1b8cb2b1f0a3",
+      "class": "LiteratureTests",
+      "scope": "Same synthetic fixture assertions; development path setup and direct-run reporting removed."
+    },
+    {
+      "file": "verify_research_flow.py",
+      "source_sha256": "4d1f106ae6dbf86bde9dfa97a0ba96de3c365f678702d24c4635829c0a1bb3cd",
+      "class": "WorkflowTests",
+      "scope": "Same synthetic fixture assertions; development path setup and direct-run reporting removed."
+    },
+    {
+      "file": "verify_generalization.py",
+      "source_sha256": "08dd60759b49c38a74a3f23c7b1e6e69c3a3b2b7e7d1f22a161a46aa01905907",
+      "class": "GeneralizationTests",
+      "scope": "Same synthetic fixture assertions; development path setup and direct-run reporting removed."
+    },
+    {
+      "file": "verify_repairs.py",
+      "source_sha256": "1117c7b3725eb4de6aa4e459359313ba31a7805131041192e8ae1e0c81609821",
+      "class": "RepairTests",
+      "scope": "Same synthetic fixture assertions; development path setup and direct-run reporting removed."
+    }
+  ],
+  "excluded_from_porting": [
+    "Private real-PDF replay fixtures remain in the development project; not bundled or counted as portable cases."
+  ]
+}
