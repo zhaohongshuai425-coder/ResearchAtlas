@@ -14,7 +14,7 @@ class PublicDistribution(unittest.TestCase):
         spec=importlib.util.spec_from_file_location('public_link_builder',RELEASE/'build_release.py')
         builder=importlib.util.module_from_spec(spec);spec.loader.exec_module(builder)
         with tempfile.TemporaryDirectory(prefix='Public links ') as tmp,patch.object(builder,'SOURCE',RELEASE):
-            output=Path(tmp)/'release';builder.build(output,test=False)
+            output=Path(tmp).resolve()/'release';builder.build(output,test=False)
             text=(output/'Harness_执行入口.md').read_text(encoding='utf-8')
             local=[]
             for target in re.findall(r'\]\(([^\n)]*)\)',text):
@@ -41,7 +41,7 @@ class PublicDistribution(unittest.TestCase):
             self.assertTrue((root/'scripts/tools/references/学位论文默认格式_沈阳农业大学本地版.md').is_file())
     def test_project_handoff_carries_code_notices_and_text_preset(self):
         with tempfile.TemporaryDirectory(prefix='Public handoff ') as tmp:
-            root=Path(tmp);flow.initialize(root/'project','Synthetic public handoff','public-notices')
+            root=Path(tmp).resolve();flow.initialize(root/'project','Synthetic public handoff','public-notices')
             package=root/'handoff.zip';flow.pack(root/'project/research_state.json',package,True)
             dest=root/'received';flow.restore(package,dest)
             self.assertEqual((dest/'tools/LICENSE').read_bytes(),(RELEASE/'LICENSE').read_bytes())

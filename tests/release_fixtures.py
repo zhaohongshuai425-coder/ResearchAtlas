@@ -6,7 +6,7 @@ import hashlib,json,shutil,tempfile
 @contextmanager
 def completed_release(source):
     with tempfile.TemporaryDirectory(prefix='Synthetic completed installer input ') as temporary:
-        root=Path(temporary)/'fixture'
+        root=Path(temporary).resolve()/'fixture'
         shutil.copytree(source,root,ignore=shutil.ignore_patterns('__pycache__','*.pyc'))
         version=json.loads((root/'release_metadata.json').read_text(encoding='utf-8'))['version']
         report={'passed':True,'version':version,'completion_state':'complete','installable':True,

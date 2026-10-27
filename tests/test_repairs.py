@@ -12,7 +12,7 @@ spec=importlib.util.spec_from_file_location('repair_installer',RELEASE/'install.
 class PairCommitTests(unittest.TestCase):
     def test_writer_lock_is_released_after_process_death(self):
         with tempfile.TemporaryDirectory() as d:
-            state=Path(d)/'state.json'
+            state=Path(d).resolve()/'state.json'
             script='import sys;sys.path.insert(0,sys.argv[1]);import research_flow as f;from pathlib import Path\nwith f.locked(Path(sys.argv[2])):\n print("LOCKED",flush=True)\n sys.stdin.read()\n'
             child=subprocess.Popen([sys.executable,'-B','-c',script,str(TOOLS),str(state)],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True)
             try:
@@ -29,7 +29,7 @@ class PairCommitTests(unittest.TestCase):
 
     def test_receipt_publish_failure_recovers_same_request(self):
         with tempfile.TemporaryDirectory() as d:
-            out=Path(d)/'context.txt';publish=fc._publish
+            out=Path(d).resolve()/'context.txt';publish=fc._publish
             def fault(src,dst):
                 if str(dst).endswith('.receipt.json'):raise OSError('injected receipt failure')
                 return publish(src,dst)
@@ -39,7 +39,7 @@ class PairCommitTests(unittest.TestCase):
 
     def test_recovery_preserves_user_changed_payload(self):
         with tempfile.TemporaryDirectory() as d:
-            out=Path(d)/'c.txt';publish=fc._publish
+            out=Path(d).resolve()/'c.txt';publish=fc._publish
             def fault(src,dst):
                 if str(dst).endswith('.receipt.json'):raise OSError('fault')
                 return publish(src,dst)
@@ -50,14 +50,14 @@ class PairCommitTests(unittest.TestCase):
 
     def test_new_request_cannot_silently_finish_previous_export(self):
         with tempfile.TemporaryDirectory() as d:
-            out=Path(d)/'c.txt'
+            out=Path(d).resolve()/'c.txt'
             with patch.object(fc,'_publish',side_effect=OSError('fault')),self.assertRaises(OSError):pc.export(out)
             with self.assertRaises(FileExistsError):pc.export(out,task='different request')
             self.assertTrue(fc.recover_pair(out)['passed'])
 
     def test_staging_failure_leaves_no_half_output(self):
         with tempfile.TemporaryDirectory() as d:
-            out=Path(d)/'c.txt';original=Path.open
+            out=Path(d).resolve()/'c.txt';original=Path.open
             def fault(path,*args,**kwargs):
                 if path.name=='receipt.tmp':raise OSError('staging failure')
                 return original(path,*args,**kwargs)
@@ -89,7 +89,7 @@ class BridgeRepairTests(unittest.TestCase):
 
 class IntakeTests(unittest.TestCase):
     def setUp(self):
-        self.tmp=tempfile.TemporaryDirectory(prefix='收文献 空格 ');self.root=Path(self.tmp.name)
+        self.tmp=tempfile.TemporaryDirectory(prefix='收文献 空格 ');self.root=Path(self.tmp.name).resolve()
         self.library=self.root/'project/literature.json';lt.initialize(self.library,'Fixture research','fixture')
         self.a=self.root/'one.pdf';self.a.write_bytes(b'%PDF-1.4\nUnparsed fixture A')
     def tearDown(self):self.tmp.cleanup()
@@ -162,7 +162,7 @@ class IntakeTests(unittest.TestCase):
 
 class InstallerRepairTests(unittest.TestCase):
     def setUp(self):
-        self.tmp=tempfile.TemporaryDirectory();self.root=Path(self.tmp.name);self.parent=self.root/'skills'
+        self.tmp=tempfile.TemporaryDirectory();self.root=Path(self.tmp.name).resolve();self.parent=self.root/'skills'
         self.one=self.make_release('one','1.0');self.two=self.make_release('two','2.0')
     def tearDown(self):self.tmp.cleanup()
     def make_release(self,name,version):

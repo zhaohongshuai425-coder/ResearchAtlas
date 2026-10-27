@@ -11,7 +11,7 @@ def module(name,path):
 ins=module('postfix_installer',RELEASE/'install.py');builder=module('postfix_builder',RELEASE/'build_release.py')
 
 class Fixture(unittest.TestCase):
-    def setUp(self):self.temp=tempfile.TemporaryDirectory(prefix='证据修复 ');self.root=Path(self.temp.name)
+    def setUp(self):self.temp=tempfile.TemporaryDirectory(prefix='证据修复 ');self.root=Path(self.temp.name).resolve()
     def tearDown(self):self.temp.cleanup()
     def library(self):
         path=self.root/'project/literature.json';lt.initialize(path,'Synthetic','postfix');return path

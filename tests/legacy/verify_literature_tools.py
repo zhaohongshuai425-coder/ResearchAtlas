@@ -29,7 +29,7 @@ import literature_tools as lt
 class LiteratureTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
         self.project = self.root / '试验夹具 项目'
         flow.initialize(self.project, '仅用于测试的主题', 'fixture')
         self.state = self.project / 'research_state.json'

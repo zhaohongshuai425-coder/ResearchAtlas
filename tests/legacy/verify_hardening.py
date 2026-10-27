@@ -34,7 +34,7 @@ import review_workbench as rw
 
 class HardeningTests(unittest.TestCase):
     def setUp(self):
-        self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name)
+        self.temp=tempfile.TemporaryDirectory();self.root=Path(self.temp.name).resolve()
         self.derived=self.root/'derived';self.derived.mkdir()
         self.meta=self.root/'registered.json';core.save(self.meta,{'registered':True})
         self.original=self.root/'source.bin';self.original.write_bytes(b'original fixture source bytes')

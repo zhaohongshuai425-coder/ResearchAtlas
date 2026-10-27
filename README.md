@@ -2,7 +2,7 @@
 
 从一个研究方向，或已有的半成品论文、文献、代码和结果，接续到可追溯的科研工作流。中文优先，适配具备对应能力的研究代理。
 
-**当前版本：1.3.0-beta.1，公开 Beta，MIT。** 仓库品牌为ResearchAtlas；安装和调用的Skill标识为`research-evidence-workflow`。
+**当前版本：1.3.0-beta.2，公开 Beta，MIT。** 仓库品牌为ResearchAtlas；安装和调用的Skill标识为`research-evidence-workflow`。
 
 ## 能做什么
 

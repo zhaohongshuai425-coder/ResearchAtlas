@@ -6,7 +6,7 @@ import core,corpus_tools as ct,research_flow as flow
 GOOD='Battery capacity degradation is measured under declared cycling conditions, with source limitations preserved for synthetic review.'
 HELD='unreadablemappingtoken '+('क्षज'*50)
 
-def binding(root,path):return {'path':path.relative_to(root).as_posix(),'sha256':core.sha(path)}
+def binding(root,path):return {'path':path.resolve().relative_to(root.resolve()).as_posix(),'sha256':core.sha(path)}
 
 def graph(root):
     flow.initialize(root,'Synthetic graph handoff','round7-graph')
@@ -43,7 +43,7 @@ def register_dependencies(state,extra=()):
     # Explicitly register fixture files; never crawl the filesystem.
     root=state.parent
     for path in [root/'manifest.json',*extra]:
-        if not any(a['path']==path.relative_to(root).as_posix() for a in flow.read_state(state)['artifacts']):
+        if not any(a['path']==path.resolve().relative_to(root.resolve()).as_posix() for a in flow.read_state(state)['artifacts']):
             flow.register_artifact(state,path,'other','ROOT-'+str(len(flow.read_state(state)['artifacts'])),'Explicit synthetic root')
     from handoff_dependencies import inspect
     report=inspect(root,flow.read_state(state)['artifacts'])

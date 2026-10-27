@@ -11,7 +11,7 @@ from round5_fixtures import GraphFixture
 
 class Base(unittest.TestCase):
     def setUp(self):
-        self.tmp=tempfile.TemporaryDirectory(prefix='Round6 handoff ');self.root=Path(self.tmp.name)
+        self.tmp=tempfile.TemporaryDirectory(prefix='Round6 handoff ');self.root=Path(self.tmp.name).resolve()
     def tearDown(self):self.tmp.cleanup()
     def library(self,body='Battery capacity degradation is measured under declared cycling conditions, with source limitations preserved for review.',nested=False,empty=False):
         project=self.root/'project';flow.initialize(project,'Synthetic cross-domain project','round6')

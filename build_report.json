@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "version": "1.3.0-beta.1",
+  "version": "1.3.0-beta.2",
   "source_files_unchanged_by_build": true,
   "model_calls": 0,
   "tests_performed": true,
@@ -9,7 +9,7 @@
   "installable": true,
   "tests": {
     "passed": true,
-    "tests_run": 343,
+    "tests_run": 344,
     "failures": 0,
     "errors": 0,
     "scope": "Portable synthetic fixtures and offline tool invariants; no research data, model calls or native model-loop guarantee."

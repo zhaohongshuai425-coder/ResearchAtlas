@@ -17,7 +17,7 @@ builder=importlib.util.module_from_spec(spec);spec.loader.exec_module(builder)
 
 class Base(unittest.TestCase):
     def setUp(self):
-        self.tmp=tempfile.TemporaryDirectory(prefix='Round3 synthetic ');self.root=Path(self.tmp.name)
+        self.tmp=tempfile.TemporaryDirectory(prefix='Round3 synthetic ');self.root=Path(self.tmp.name).resolve()
     def tearDown(self):self.tmp.cleanup()
     def library(self):
         project=self.root/'project';flow.initialize(project,'Synthetic only','round3')

@@ -31,7 +31,7 @@ import core
 class WorkflowTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
         self.project = self.root / '独立项目 含空格'
         flow.initialize(self.project, '仅用于流程测试的方向', 'test-project')
         self.state = self.project / 'research_state.json'

@@ -11,7 +11,7 @@ from round7_fixtures import graph,corpus,register_dependencies,update_corpus,GOO
 
 
 class Base(unittest.TestCase):
-    def setUp(self):self.tmp=tempfile.TemporaryDirectory(prefix='R7 ');self.root=Path(self.tmp.name)
+    def setUp(self):self.tmp=tempfile.TemporaryDirectory(prefix='R7 ');self.root=Path(self.tmp.name).resolve()
     def tearDown(self):self.tmp.cleanup()
     def save_query(self,backend,source,state,question='battery'):
         path=state.parent/'query.json';core.save(path,es.query(backend,source,question,state.parent,original_only=backend!='graph'))

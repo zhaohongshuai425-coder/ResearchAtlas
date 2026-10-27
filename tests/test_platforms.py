@@ -27,7 +27,7 @@ spec.loader.exec_module(installer)
 class ContextTests(unittest.TestCase):
     def test_source_newlines_normalized_but_raw_hash_retained(self):
         with tempfile.TemporaryDirectory() as d:
-            d = Path(d)
+            d = Path(d).resolve()
             source = d / 'SKILL.md'
             source.write_bytes(b'first\r\nsecond\r\n')
             with patch.object(pc, 'SKILL', d):
@@ -37,7 +37,7 @@ class ContextTests(unittest.TestCase):
 
     def test_export_bytes_equal_compiled_context_on_windows(self):
         with tempfile.TemporaryDirectory() as d:
-            out = Path(d) / 'context.txt'
+            out = Path(d).resolve() / 'context.txt'
             pc.export(out)
             self.assertEqual(out.read_bytes(), pc.build()['context'].encode('utf-8'))
             self.assertNotIn(b'\r\r\n', out.read_bytes())
@@ -54,7 +54,7 @@ class ContextTests(unittest.TestCase):
 
     def test_api_requires_explicit_model(self):
         with tempfile.TemporaryDirectory() as d:
-            out = Path(d) / 'request.json'
+            out = Path(d).resolve() / 'request.json'
             with self.assertRaises(ValueError):
                 pc.export(out, mode='api', task='Check a study')
             self.assertFalse(out.exists())
@@ -62,11 +62,11 @@ class ContextTests(unittest.TestCase):
     def test_api_requires_explicit_task(self):
         with tempfile.TemporaryDirectory() as d:
             with self.assertRaises(ValueError):
-                pc.export(Path(d) / 'r.json', mode='api', model='user-selected-model')
+                pc.export(Path(d).resolve() / 'r.json', mode='api', model='user-selected-model')
 
     def test_api_request_shape_and_receipt(self):
         with tempfile.TemporaryDirectory() as d:
-            out = Path(d) / 'request.json'
+            out = Path(d).resolve() / 'request.json'
             result = pc.export(out, mode='api', model='user-selected-model', task='My actual task')
             payload = json.loads(out.read_text(encoding='utf-8'))
             self.assertEqual(payload['model'], 'user-selected-model')
@@ -78,7 +78,7 @@ class ContextTests(unittest.TestCase):
 
     def test_api_can_declare_executable_harness_tools(self):
         with tempfile.TemporaryDirectory() as d:
-            out = Path(d) / 'request.json'
+            out = Path(d).resolve() / 'request.json'
             result = pc.export(out, mode='api', model='chosen-model', task='Read the state', with_tools=True)
             payload = json.loads(out.read_text(encoding='utf-8'))
             self.assertEqual(payload['tools'], ht.definitions())
@@ -89,11 +89,11 @@ class ContextTests(unittest.TestCase):
     def test_tool_flag_rejected_for_chat(self):
         with tempfile.TemporaryDirectory() as d:
             with self.assertRaises(ValueError):
-                pc.export(Path(d) / 'context.txt', with_tools=True)
+                pc.export(Path(d).resolve() / 'context.txt', with_tools=True)
 
     def test_does_not_overwrite_output_or_receipt(self):
         with tempfile.TemporaryDirectory() as d:
-            out = Path(d) / 'context.txt'
+            out = Path(d).resolve() / 'context.txt'
             pc.export(out)
             before = core.sha(out)
             with self.assertRaises(FileExistsError):
@@ -102,7 +102,7 @@ class ContextTests(unittest.TestCase):
 
     def test_small_budget_rejected_without_truncation(self):
         with tempfile.TemporaryDirectory() as d:
-            out = Path(d) / 'context.txt'
+            out = Path(d).resolve() / 'context.txt'
             with self.assertRaises(ValueError):
                 pc.export(out, max_chars=1000)
             self.assertFalse(out.exists())
@@ -122,14 +122,14 @@ class ContextTests(unittest.TestCase):
         import urllib.request
         import socket
         with tempfile.TemporaryDirectory() as d, patch.object(urllib.request, 'urlopen', side_effect=AssertionError('network')), patch.object(socket, 'create_connection', side_effect=AssertionError('network')):
-            result = pc.export(Path(d) / 'context.txt')
+            result = pc.export(Path(d).resolve() / 'context.txt')
             self.assertFalse(result['credentials_read'])
             self.assertFalse(result['network_used'])
 
 class HarnessTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix='Harness 科研 空格 ')
-        self.root = Path(self.temp.name)
+        self.root = Path(self.temp.name).resolve()
         flow.initialize(self.root / 'project', 'A real research question', 'harness-fixture')
         self.project = self.root / 'project'
 
@@ -225,17 +225,17 @@ class InstallTargetTests(unittest.TestCase):
     def test_opencode_project_install_path(self):
         with tempfile.TemporaryDirectory() as d,completed_release(RELEASE) as accepted,patch.object(installer,'ROOT',accepted):
             value = installer.install(target='opencode', project=d)
-            self.assertEqual(Path(value['installed']), Path(d) / '.opencode/skills/research-evidence-workflow')
+            self.assertEqual(Path(value['installed']), Path(d).resolve() / '.opencode/skills/research-evidence-workflow')
 
     def test_harness_project_install_path(self):
         with tempfile.TemporaryDirectory() as d,completed_release(RELEASE) as accepted,patch.object(installer,'ROOT',accepted):
             value = installer.install(target='harness', project=d)
-            self.assertEqual(Path(value['installed']), Path(d) / '.dsh/skills/research-evidence-workflow')
+            self.assertEqual(Path(value['installed']), Path(d).resolve() / '.dsh/skills/research-evidence-workflow')
 
     def test_shared_agent_project_path(self):
         with tempfile.TemporaryDirectory() as d,completed_release(RELEASE) as accepted,patch.object(installer,'ROOT',accepted):
             value = installer.install(target='agent', project=d)
-            self.assertEqual(Path(value['installed']), Path(d) / '.agents/skills/research-evidence-workflow')
+            self.assertEqual(Path(value['installed']), Path(d).resolve() / '.agents/skills/research-evidence-workflow')
 
     def test_harness_user_home_respects_explicit_config(self):
         with tempfile.TemporaryDirectory() as d, patch.dict(os.environ, {'DSH_HOME': d}):

@@ -12,7 +12,7 @@ def module(name,file):
 installer=module('patch_installer',RELEASE/'install.py');builder=module('patch_builder',RELEASE/'build_release.py')
 
 class Fixture(unittest.TestCase):
-    def setUp(self):self.tmp=tempfile.TemporaryDirectory(prefix='运行修复 ');self.root=Path(self.tmp.name)
+    def setUp(self):self.tmp=tempfile.TemporaryDirectory(prefix='运行修复 ');self.root=Path(self.tmp.name).resolve()
     def tearDown(self):self.tmp.cleanup()
     def library(self):
         library=self.root/'project/literature.json';lt.initialize(library,'Synthetic regression fixture','patch');return library

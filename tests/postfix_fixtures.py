@@ -3,7 +3,7 @@ from pathlib import Path
 import gzip,json
 import core,corpus_tools as ct
 
-def binding(root,path):return {'path':path.relative_to(root).as_posix(),'sha256':core.sha(path)}
+def binding(root,path):return {'path':path.resolve().relative_to(root.resolve()).as_posix(),'sha256':core.sha(path)}
 
 def corpus(root,body):
     root.mkdir(parents=True);metadata=root/'metadata.json';core.save(metadata,{'title':'Synthetic evidence fixture'})

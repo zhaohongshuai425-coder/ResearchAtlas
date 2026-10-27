@@ -51,14 +51,14 @@ class ReleaseTests(unittest.TestCase):
 
     def test_missing_input_is_failure_not_traceback(self):
         with tempfile.TemporaryDirectory() as d:
-            result = run('brief', 'status', '--state', Path(d) / 'missing.json')
+            result = run('brief', 'status', '--state', Path(d).resolve() / 'missing.json')
             self.assertEqual(result.returncode, 1)
             self.assertFalse(json.loads(result.stdout)['passed'])
             self.assertNotIn('Traceback', result.stderr)
 
     def test_new_project_round_trip_with_unicode_and_spaces(self):
         with tempfile.TemporaryDirectory(prefix='科研 Skill 空格 ') as d:
-            d = Path(d)
+            d = Path(d).resolve()
             result = run('research-flow', 'init', d / 'project', '--topic', '电池寿命预测', '--id', 'battery', cwd=d)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             result = run('brief', 'status', '--state', d / 'project/research_state.json', cwd=d)
@@ -70,7 +70,7 @@ class ReleaseTests(unittest.TestCase):
 
     def test_handoff_still_verifies(self):
         with tempfile.TemporaryDirectory() as d:
-            d = Path(d)
+            d = Path(d).resolve()
             flow.initialize(d / 'project', 'A source-linked research test', 'release-test')
             result = flow.pack(d / 'project/research_state.json', d / 'handoff.zip')
             self.assertTrue(result['passed'])
@@ -101,7 +101,7 @@ class ReleaseTests(unittest.TestCase):
 
     def test_launcher_failure_has_receipt_and_closes_files(self):
         with tempfile.TemporaryDirectory() as d:
-            d = Path(d)
+            d = Path(d).resolve()
             value = runner.run_task(d, 'fixture only', d / 'out', command=[str(d / 'absent.exe')])
             self.assertFalse(value['passed'])
             self.assertEqual(value['task_status'], 'not_started')
@@ -112,14 +112,14 @@ class ReleaseTests(unittest.TestCase):
 
     def test_missing_cli_leaves_no_empty_output_folder(self):
         with tempfile.TemporaryDirectory() as d, patch.object(runner.shutil, 'which', return_value=None):
-            d = Path(d)
+            d = Path(d).resolve()
             with self.assertRaises(FileNotFoundError):
                 runner.run_task(d, 'fixture only', d / 'out')
             self.assertFalse((d / 'out').exists())
 
     def test_invalid_function_timeout_rejected_before_side_effects(self):
         with tempfile.TemporaryDirectory() as d:
-            d = Path(d)
+            d = Path(d).resolve()
             with self.assertRaises(ValueError):
                 runner.run_task(d, 'fixture only', d / 'out', timeout=0, command=['unused'])
             self.assertFalse((d / 'out').exists())
@@ -132,7 +132,7 @@ class ReleaseTests(unittest.TestCase):
         self.assertEqual(sys.path, paths)
 
     def test_missing_dispatch_target_fails_cleanly(self):
-        with tempfile.TemporaryDirectory() as d, patch.object(dispatcher, 'TOOLS', Path(d)):
+        with tempfile.TemporaryDirectory() as d, patch.object(dispatcher, 'TOOLS', Path(d).resolve()):
             self.assertEqual(dispatcher.main(['core']), 1)
 
     def test_all_python_sources_parse(self):
@@ -160,7 +160,7 @@ class ReleaseTests(unittest.TestCase):
 
     def test_existing_install_is_preserved(self):
         with tempfile.TemporaryDirectory() as d,completed_release(RELEASE) as accepted,patch.object(installer,'ROOT',accepted):
-            existing = Path(d) / installer.NAME
+            existing = Path(d).resolve() / installer.NAME
             existing.mkdir()
             marker = existing / 'user.txt'
             marker.write_text('preserve me', encoding='utf-8')
@@ -170,7 +170,7 @@ class ReleaseTests(unittest.TestCase):
 
     def test_tampered_release_rejected(self):
         with tempfile.TemporaryDirectory() as d:
-            d = Path(d)
+            d = Path(d).resolve()
             shutil.copytree(RELEASE, d / 'release', ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
             (d / 'release/research-evidence-workflow/SKILL.md').write_text('modified', encoding='utf-8')
             with self.assertRaises(ValueError):

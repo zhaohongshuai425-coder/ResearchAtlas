@@ -68,7 +68,7 @@ class R01IndependentReport(unittest.TestCase):
 
 class R02FollowupQuality(unittest.TestCase):
     def setUp(self):
-        self.tmp=tempfile.TemporaryDirectory(prefix='R8 quality ');self.addCleanup(self.tmp.cleanup);self.root=Path(self.tmp.name)/'project'
+        self.tmp=tempfile.TemporaryDirectory(prefix='R8 quality ');self.addCleanup(self.tmp.cleanup);self.root=Path(self.tmp.name).resolve()/'project'
     def fixture(self,pages,expected='cjk',query='capacity'):
         self.manifest,_=corpus(self.root,pages,expected_script=expected)
         self.query=self.root/'query.json';core.save(self.query,es.query('corpus',self.manifest,query,self.root,original_only=True,limit=1))
@@ -120,7 +120,7 @@ class R02FollowupQuality(unittest.TestCase):
 class R03PngFixtureMemory(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory(prefix='R8 PNG ');self.addCleanup(self.tmp.cleanup)
-        self.case=round3.W05PngData();self.case.root=Path(self.tmp.name)
+        self.case=round3.W05PngData();self.case.root=Path(self.tmp.name).resolve()
     def test_oversized_header_test_rejects_without_large_fixture_allocation(self):
         tracing=tracemalloc.is_tracing()
         if not tracing:tracemalloc.start()
